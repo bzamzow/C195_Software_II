@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="580.0" prefWidth="1038.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.wgu.zamzow.software_ii.controllers.ShowAppointmentsViewController">
+   <children>
+      <Button fx:id="btnDel" layoutX="973.0" layoutY="541.0" mnemonicParsing="false" onMouseClicked="#DeleteAppointment" text="Delete" textAlignment="CENTER" textFill="RED" />
+      <Button fx:id="btnMod" layoutX="899.0" layoutY="541.0" mnemonicParsing="false" onMouseClicked="#ModifyAppointment" text="Modify" textAlignment="CENTER" />
+      <Label layoutX="278.0" layoutY="47.0" text="Modify and Delete Appointments" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TabPane layoutX="6.0" layoutY="82.0" prefHeight="455.0" prefWidth="1023.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Weekly">
+                   <TableView fx:id="tblWeeklyAppointments" prefHeight="323.0" prefWidth="779.0">
+                       <columns>
+                           <TableColumn fx:id="colID" prefWidth="105.0" text="Appointment ID" />
+                           <TableColumn fx:id="colTitle" prefWidth="100.0" text="Title" />
+                           <TableColumn fx:id="colDesc" prefWidth="99.0" text="Description" />
+                           <TableColumn fx:id="colLoc" prefWidth="96.0" text="Location" />
+                           <TableColumn fx:id="colType" prefWidth="94.0" text="Type" />
+                           <TableColumn fx:id="colStart" prefWidth="132.0" text="Start" />
+                           <TableColumn fx:id="colEnd" prefWidth="136.0" text="End" />
+                           <TableColumn fx:id="colCust" prefWidth="98.0" text="Customer" />
+                           <TableColumn fx:id="colUser" prefWidth="84.0" text="User" />
+                           <TableColumn fx:id="colContact" prefWidth="79.0" text="Contact" />
+                       </columns>
+                   </TableView>
+          </Tab>
+          <Tab text="Monthly">
+              <TableView fx:id="tblMonthlyAppointments" prefHeight="323.0" prefWidth="779.0">
+                  <columns>
+                      <TableColumn fx:id="colMID" prefWidth="105.0" text="Appointment ID" />
+                      <TableColumn fx:id="colMTitle" prefWidth="100.0" text="Title" />
+                      <TableColumn fx:id="colMDesc" prefWidth="99.0" text="Description" />
+                      <TableColumn fx:id="colMLoc" prefWidth="96.0" text="Location" />
+                      <TableColumn fx:id="colMType" prefWidth="94.0" text="Type" />
+                      <TableColumn fx:id="colMStart" prefWidth="132.0" text="Start" />
+                      <TableColumn fx:id="colMEnd" prefWidth="136.0" text="End" />
+                      <TableColumn fx:id="colMCust" prefWidth="98.0" text="Customer" />
+                      <TableColumn fx:id="colMUser" prefWidth="84.0" text="User" />
+                      <TableColumn fx:id="colMContact" prefWidth="79.0" text="Contact" />
+                  </columns>
+              </TableView>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.wgu.zamzow.software_ii.controllers.ShowCustomersViewController">
+   <children>
+      <TableView fx:id="tblCustomers" layoutX="14.0" layoutY="100.0" prefHeight="200.0" prefWidth="580.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="115.0" text="Customer Name" />
+          <TableColumn fx:id="colPhone" minWidth="0.0" prefWidth="118.0" text="Phone" />
+            <TableColumn fx:id="colAddress" prefWidth="134.0" text="Address" />
+            <TableColumn fx:id="colPCode" prefWidth="92.0" text="Postal Code" />
+            <TableColumn fx:id="colDivision" prefWidth="120.0" text="Division" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnDel" layoutX="537.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#DeleteCustomer" text="Delete" textAlignment="CENTER" textFill="RED" />
+      <Button fx:id="btnMod" layoutX="470.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#ModifyCustomer" text="Modify" textAlignment="CENTER" />
+      <Label layoutX="136.0" layoutY="47.0" text="Modify and Delete Customers" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

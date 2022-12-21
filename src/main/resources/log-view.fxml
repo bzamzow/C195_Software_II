@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.wgu.zamzow.software_ii.controllers.LogViewController">
+   <children>
+      <TextArea fx:id="txtLogs" layoutX="6.0" layoutY="14.0" prefHeight="393.0" prefWidth="476.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="4.0" />
+   </children>
+</AnchorPane>

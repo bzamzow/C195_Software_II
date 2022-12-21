@@ -1,0 +1,45 @@
+2022-12-19 11:02:02.201 : Successful Login : Logged in successfully
+2022-12-19 11:02:19.83 : Unsuccessful Login : Invalid Username
+2022-12-19 11:02:33.549 : Unsuccessful Login : Invalid Password
+2022-12-19 11:02:46.748 : Successful Login : Logged in successfully
+2022-12-19 11:09:29.641 : Successful Login : Logged in successfully
+2022-12-19 11:11:24.847 : Successful Login : Logged in successfully
+2022-12-19 11:12:02.16 : Successful Login : Logged in successfully
+2022-12-19 11:23:51.166 : Successful Login : Logged in successfully
+2022-12-19 11:25:20.483 : Successful Login : Logged in successfully
+2022-12-19 11:33:32.625 : Successful Login : Logged in successfully
+2022-12-19 11:35:30.029 : Successful Login : Logged in successfully
+2022-12-19 11:36:38.191 : Successful Login : Logged in successfully
+2022-12-19 11:40:32.46 : Successful Login : Logged in successfully
+2022-12-19 11:41:38.755 : Successful Login : Logged in successfully
+2022-12-19 11:43:06.787 : Successful Login : Logged in successfully
+2022-12-19 11:44:12.438 : Successful Login : Logged in successfully
+2022-12-19 11:46:24.288 : Successful Login : Logged in successfully
+2022-12-19 11:47:08.959 : Successful Login : Logged in successfully
+2022-12-19 11:47:47.994 : Successful Login : Logged in successfully
+2022-12-19 12:06:56.993 : Successful Login : Logged in successfully
+2022-12-19 12:10:26.077 : Successful Login : Logged in successfully
+2022-12-20 10:13:48.151 : Successful Login : Logged in successfully
+2022-12-20 10:17:59.475 : Successful Login : Logged in successfully
+2022-12-20 10:21:37.92 : Successful Login : Logged in successfully
+2022-12-20 10:23:12.869 : Successful Login : Logged in successfully
+2022-12-20 10:27:23.16 : Successful Login : Logged in successfully
+2022-12-20 10:29:34.632 : Successful Login : Logged in successfully
+2022-12-20 10:32:19.725 : Successful Login : Logged in successfully
+2022-12-20 10:48:40.58 : Successful Login : Logged in successfully
+2022-12-20 10:49:28.653 : Successful Login : Logged in successfully
+2022-12-20 10:51:13.139 : Successful Login : Logged in successfully
+2022-12-20 10:52:15.92 : Successful Login : Logged in successfully
+2022-12-20 10:53:44.31 : Successful Login : Logged in successfully
+2022-12-20 10:54:59.656 : Successful Login : Logged in successfully
+2022-12-20 10:58:38.963 : Successful Login : Logged in successfully
+2022-12-20 11:00:19.853 : Successful Login : Logged in successfully
+2022-12-20 11:08:33.184 : Successful Login : Logged in successfully
+2022-12-20 11:21:01.678 : %unsuccess : %invalid %username
+2022-12-20 11:21:07.834 : %unsuccess : %invalid %password
+2022-12-20 11:22:36.148 : Unsuccessful Login : Invalid Password
+2022-12-20 11:33:27.699 : Unsuccessful Login : Invalid Password
+2022-12-20 11:34:24.298 : Unsuccessful Login : Invalid Username
+2022-12-20 11:34:31.103 : Successful Login : Logged in successfully
+2022-12-21 11:09:57.063 : Successful Login : Logged in successfully
+2022-12-21 11:10:53.765 : Successful Login : Logged in successfully

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="371.0" prefWidth="933.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.wgu.zamzow.software_ii.controllers.MainController">
+
+   <children>
+      <MenuBar prefHeight="25.0" prefWidth="386.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="mFClose" mnemonicParsing="false" onAction="#close" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Customers">
+            <items>
+
+              <MenuItem fx:id="mCAdd" mnemonicParsing="false" onAction="#calAdd" text="Add" />
+              <MenuItem fx:id="mCModify" mnemonicParsing="false" onAction="#calMod" text="Modify" />
+              <MenuItem fx:id="mCDelete" mnemonicParsing="false" onAction="#calMod" text="Delete" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Appointments">
+              <items>
+                  <MenuItem fx:id="mAAdd" mnemonicParsing="false" onAction="#aAdd" text="Add" />
+                  <MenuItem fx:id="mAModify" mnemonicParsing="false" onAction="#aMod" text="Modify" />
+                  <MenuItem fx:id="mADelete" mnemonicParsing="false" text="Delete" />
+                  <MenuItem fx:id="mAView" mnemonicParsing="false" onAction="#aView" text="View All" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Reports">
+              <items>
+                <MenuItem fx:id="rprtCustomer" mnemonicParsing="false" text="Customer Appointments" />
+                  <MenuItem fx:id="rprtContact" mnemonicParsing="false" text="Contact Schedules" />
+                  <MenuItem fx:id="rprtUser" mnemonicParsing="false" text="User Created" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#viewReadMe" text="About" />
+                <MenuItem mnemonicParsing="false" onAction="#viewLogs" text="Logs" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <TableView fx:id="tblUpcoming" layoutX="10.0" layoutY="111.0" prefHeight="277.0" prefWidth="442.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <columns>
+          <TableColumn fx:id="colTitle" prefWidth="75.0" text="Title" />
+          <TableColumn fx:id="colDesc" prefWidth="123.0" text="Description" />
+            <TableColumn fx:id="colLoc" prefWidth="75.0" text="Location" />
+            <TableColumn fx:id="colType" prefWidth="69.0" text="Type" />
+            <TableColumn fx:id="colStart" prefWidth="175.0" text="Start" />
+            <TableColumn fx:id="colEnd" prefWidth="148.0" text="End" />
+            <TableColumn fx:id="colCust" prefWidth="91.0" text="Customer" />
+            <TableColumn fx:id="colUser" prefWidth="77.0" text="User" />
+            <TableColumn fx:id="colContact" prefWidth="79.0" text="Contact" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

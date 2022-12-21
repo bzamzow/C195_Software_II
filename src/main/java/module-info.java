@@ -4,7 +4,7 @@ module ed.wgu.zamzow.software_ii {
     requires java.sql;
 
 
-    opens ed.wgu.zamzow.software_ii to javafx.fxml, javafx.base;
+    opens ed.wgu.zamzow.software_ii to javafx.fxml, javafx.base, javafx.controls;
     exports ed.wgu.zamzow.software_ii;
     exports ed.wgu.zamzow.software_ii.controllers;
     exports ed.wgu.zamzow.software_ii.objects;

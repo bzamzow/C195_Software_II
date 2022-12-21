@@ -8,9 +8,10 @@ import java.sql.DriverManager;
 
 public class DBConnect {
 
-    private static final String DBURL = "jdbc:mysql://jmzsoft.com:3306/jmzsoft3_scheduler";
-    private static final String username = "jmzsoft3_mazwoz";
-    private static final String pass = "TazMan$$00";
+    //private static final String DBURL = "jdbc:mysql://163.47.101.126:3306/scheduler";
+    private static final String DBURL = "jdbc:mysql://127.0.0.1:3306/scheduler";
+    private static final String username = "sqlUser";
+    private static final String pass = "Passw0rd!";
 
     public static Connection ConnectToDB() throws Exception{
 

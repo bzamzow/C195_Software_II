@@ -76,57 +76,102 @@ public class AddAppointmentViewController {
     public void save() throws SQLException {
         long millis=System.currentTimeMillis();
 
-        String title = txtTitle.getText();
-        String desc = txtDesc.getText();
-        String loc = txtLoc.getText();
-        String type = txtType.getText();
-        String startDate = dateStart.getEditor().getText();
-        String sH = cbSH.getSelectionModel().getSelectedItem().toString();
-        String sM = cbSM.getSelectionModel().getSelectedItem().toString();
-        String endDate = dateEnd.getEditor().getText();
-        String eH = cbEH.getSelectionModel().getSelectedItem().toString();
-        String eM = cbEM.getSelectionModel().getSelectedItem().toString();
-        String contact = cbContact.getSelectionModel().getSelectedItem().toString();
-        String customer = cbCust.getSelectionModel().getSelectedItem().toString();
-
-        Appointment appointment = new Appointment();
-        appointment.setTitle(title);
-        appointment.setDesc(desc);
-        appointment.setLoc(loc);
-        appointment.setType(type);
-        appointment.setStartDate(appUtils.localToGMT(appUtils.convertDateTime(startDate,sH, sM)));
-        appointment.setEndDate(appUtils.localToGMT(appUtils.convertDateTime(endDate, eH, eM)));
-        appointment.setCust_id(dbQuery.getCustomer(customer).getCustomer_id());
-        appointment.setContact_id(dbQuery.getContact(contact).getContact_id());
-        appointment.setUser_id(currentUser.getUser_id());
-        appointment.setCreated_by(currentUser.getUser_name());
-        appointment.setLast_updated_by(currentUser.getUser_name());
-        appointment.setCreate_date(new java.sql.Date(new Date(millis).getTime()));
-        appointment.setLast_update(new Timestamp(millis));
-        appointment.setUser_name(currentUser.getUser_name());
-        appointment.setCust_name(customer);
-        appointment.setCont_name(contact);
-
-        ArrayList<Appointment> conflictingAppointments = dbQuery.getConflicts(appointment);
-        for (Appointment conflict : conflictingAppointments) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText(conflict.getTitle());
-            alert.show();
-        }
-        if (conflictingAppointments.size() == 0) {
-            DBWrite dbWrite = new DBWrite();
-
-            if (dbWrite.AddAppointment(appointment)) {
-                futureAppointments.add(appointment);
-                Stage stage = (Stage) cbSH.getScene().getWindow();
-                stage.close();
-            } else {
-                if (dbError == null) {
-                    appUtils.ShowDBWriteError("adding", "appointment", "The record already exists");
+        boolean hasError = false;
+        String title = null;
+        String desc = null;
+        String loc = null;
+        String type = null;
+        String startDate = null;
+        String sH = null;
+        String sM = null;
+        String endDate = null;
+        String eH = null;
+        String eM = null;
+        String contact = null;
+        String customer = null;
+        if (txtTitle.getText() != null && !txtTitle.getText().isBlank()) {
+            title = txtTitle.getText();
+            if (txtDesc.getText() != null && !txtTitle.getText().isBlank()) {
+                desc = txtDesc.getText();
+                if (txtLoc.getText() != null && !txtLoc.getText().isBlank()) {
+                    loc = txtLoc.getText();
+                    if (txtType.getText() != null && !txtType.getText().isBlank()) {
+                        type = txtType.getText();
+                        if (dateStart.getEditor().getText() != null && !dateStart.getEditor().getText().isBlank()) {
+                            startDate = dateStart.getEditor().getText();
+                            if (dateEnd.getEditor().getText() != null && !dateEnd.getEditor().getText().isBlank()) {
+                                endDate = dateEnd.getEditor().getText();
+                            } else {
+                                hasError = true;
+                            }
+                        } else {
+                            hasError = true;
+                        }
+                    } else {
+                        hasError = true;
+                    }
                 } else {
-                    appUtils.ShowDBWriteError("adding", "appointment", dbError);
+                    hasError = true;
+                }
+            } else {
+                hasError = true;
+            }
+        } else {
+            hasError = true;
+        }
+
+        sH = cbSH.getSelectionModel().getSelectedItem().toString();
+        sM = cbSM.getSelectionModel().getSelectedItem().toString();
+        eH = cbEH.getSelectionModel().getSelectedItem().toString();
+        eM = cbEM.getSelectionModel().getSelectedItem().toString();
+        contact = cbContact.getSelectionModel().getSelectedItem().toString();
+        customer = cbCust.getSelectionModel().getSelectedItem().toString();
+
+        if (!hasError) {
+            Appointment appointment = new Appointment();
+            appointment.setTitle(title);
+            appointment.setDesc(desc);
+            appointment.setLoc(loc);
+            appointment.setType(type);
+            appointment.setStartDate(appUtils.localToGMT(appUtils.convertDateTime(startDate, sH, sM)));
+            appointment.setEndDate(appUtils.localToGMT(appUtils.convertDateTime(endDate, eH, eM)));
+            appointment.setCust_id(dbQuery.getCustomer(customer).getCustomer_id());
+            appointment.setContact_id(dbQuery.getContact(contact).getContact_id());
+            appointment.setUser_id(currentUser.getUser_id());
+            appointment.setCreated_by(currentUser.getUser_name());
+            appointment.setLast_updated_by(currentUser.getUser_name());
+            appointment.setCreate_date(new java.sql.Date(new Date(millis).getTime()));
+            appointment.setLast_update(new Timestamp(millis));
+            appointment.setUser_name(currentUser.getUser_name());
+            appointment.setCust_name(customer);
+            appointment.setCont_name(contact);
+
+            ArrayList<Appointment> conflictingAppointments = dbQuery.getConflicts(appointment);
+            for (Appointment conflict : conflictingAppointments) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText(conflict.getTitle());
+                alert.show();
+            }
+            if (conflictingAppointments.size() == 0) {
+                DBWrite dbWrite = new DBWrite();
+
+                if (dbWrite.AddAppointment(appointment)) {
+                    futureAppointments.add(appointment);
+                    Stage stage = (Stage) cbSH.getScene().getWindow();
+                    stage.close();
+                } else {
+                    if (dbError == null) {
+                        appUtils.ShowDBWriteError("adding", "appointment", "The record already exists");
+                    } else {
+                        appUtils.ShowDBWriteError("adding", "appointment", dbError);
+                    }
                 }
             }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Missing Fields");
+            alert.setContentText("All fields are required");
+            alert.show();
         }
 
     }

@@ -200,7 +200,7 @@ public class MainController {
     @FXML
     public void viewReadMe() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
-        URL fxmlLocation = getClass().getClassLoader().getResource("log-view.fxml");
+        URL fxmlLocation = getClass().getClassLoader().getResource("readme-view.fxml");
         Parent mainRoot = null;
         try {
             mainRoot = FXMLLoader.load(Objects.requireNonNull(fxmlLocation), bundle);
@@ -217,7 +217,7 @@ public class MainController {
     @FXML
     public void viewReportCustomer() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
-        URL fxmlLocation = getClass().getClassLoader().getResource("log-view.fxml");
+        URL fxmlLocation = getClass().getClassLoader().getResource("report_customers-view.fxml");
         Parent mainRoot = null;
         try {
             mainRoot = FXMLLoader.load(Objects.requireNonNull(fxmlLocation), bundle);
@@ -231,7 +231,7 @@ public class MainController {
     @FXML
     public void viewReportContact() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
-        URL fxmlLocation = getClass().getClassLoader().getResource("log-view.fxml");
+        URL fxmlLocation = getClass().getClassLoader().getResource("report_contacts-view.fxml");
         Parent mainRoot = null;
         try {
             mainRoot = FXMLLoader.load(Objects.requireNonNull(fxmlLocation), bundle);
@@ -245,7 +245,7 @@ public class MainController {
     @FXML
     public void viewReportUser() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
-        URL fxmlLocation = getClass().getClassLoader().getResource("log-view.fxml");
+        URL fxmlLocation = getClass().getClassLoader().getResource("report_users-view.fxml");
         Parent mainRoot = null;
         try {
             mainRoot = FXMLLoader.load(Objects.requireNonNull(fxmlLocation), bundle);

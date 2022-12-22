@@ -10,4 +10,8 @@ IDE: IntelliJ IDEA 2022.3 (Community Edition)
 JDK: Java SE 17.0.1
 JFX: OpenJFX-17.0.2
 
-Instructions: in a terminal window run java --jar ./C195.jar
+Instructions: in IntelliJ, click Run
+
+Additional Report: Lists all appointments made by a specific user
+
+MySQL Connector driver: mysql-connector-java-8.1.23

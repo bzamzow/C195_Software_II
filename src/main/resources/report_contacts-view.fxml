@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="483.0" prefWidth="979.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.wgu.zamzow.software_ii.controllers.ContactsReportsViewController">
+   <children>
+      <Label layoutX="397.0" layoutY="50.0" text="Schedule for Contacts" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+       <TableView fx:id="tblContactReport" layoutY="106.0" prefHeight="375.0" prefWidth="979.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="106.0">
+           <columns>
+            <TableColumn fx:id="colID" prefWidth="117.0" text="Appointment ID" />
+            <TableColumn fx:id="colTitle" prefWidth="172.0" text="Title" />
+            <TableColumn fx:id="colType" prefWidth="123.0" text="Type" />
+            <TableColumn fx:id="colDesc" prefWidth="174.0" text="Description" />
+            <TableColumn fx:id="colStart" prefWidth="174.0" text="Start" />
+            <TableColumn fx:id="colEnd" minWidth="0.0" prefWidth="142.0" text="End" />
+            <TableColumn fx:id="colCustomer" minWidth="0.0" prefWidth="76.0" text="Customer" />
+           </columns>
+       </TableView>
+      <ChoiceBox fx:id="cmbContacts" layoutX="808.0" layoutY="65.0" prefWidth="150.0" />
+      <Label layoutX="808.0" layoutY="42.0" text="Contact" />
+   </children>
+</AnchorPane>

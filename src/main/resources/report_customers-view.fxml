@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="483.0" prefWidth="509.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.wgu.zamzow.software_ii.controllers.CustomerReportsViewController">
+   <children>
+      <Label layoutX="66.0" layoutY="47.0" text="Customer Appointments by Type and Month" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+       <TableView fx:id="tblCustomerReport" layoutY="106.0" prefHeight="375.0" prefWidth="509.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="106.0">
+           <columns>
+               <TableColumn fx:id="colCustomer" prefWidth="150.0" text="Customer" />
+               <TableColumn fx:id="colType" prefWidth="150.0" text="type" />
+               <TableColumn fx:id="colCount" prefWidth="150.0" text="Count" />
+           </columns>
+       </TableView>
+   </children>
+</AnchorPane>

@@ -31,9 +31,9 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Reports">
               <items>
-                <MenuItem fx:id="rprtCustomer" mnemonicParsing="false" text="Customer Appointments" />
-                  <MenuItem fx:id="rprtContact" mnemonicParsing="false" text="Contact Schedules" />
-                  <MenuItem fx:id="rprtUser" mnemonicParsing="false" text="User Created" />
+                <MenuItem fx:id="rprtCustomer" mnemonicParsing="false" text="Customer Appointments" onAction="#viewReportCustomer" />
+                  <MenuItem fx:id="rprtContact" mnemonicParsing="false" text="Contact Schedules" onAction="#viewReportContact" />
+                  <MenuItem fx:id="rprtUser" mnemonicParsing="false" text="User Created" onAction="#viewReportUser" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Help">

@@ -116,6 +116,25 @@ public class DBQuery {
         return user;
     }
 
+    public ArrayList<User> getUsers() throws SQLException {
+        stmt = con.createStatement();
+        rs = stmt.executeQuery("SELECT * FROM users");
+        ArrayList<User> users = new ArrayList<>();
+        while (rs.next()) {
+            User user = new User();
+            user.setUser_id(rs.getInt("user_id"));
+            user.setUser_name(rs.getString("user_name"));
+            user.setCreate_date(rs.getDate("create_date"));
+            user.setPassword(rs.getString("password"));
+            user.setCreated_by(rs.getString("created_by"));
+            user.setLast_update(rs.getTimestamp("last_update"));
+            user.setLast_updated_by(rs.getString("last_updated_by"));
+            users.add(user);
+        }
+
+        return users;
+    }
+
     public User getUser(int user_id) throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM users WHERE user_id = " + user_id);
@@ -223,6 +242,67 @@ public class DBQuery {
             appointment.setCust_name(rs.getString("customer_name"));
             appointment.setCont_name(rs.getString("contact_name"));
             appointment.setUser_name(rs.getString("user_name"));
+            appointments.add(appointment);
+        }
+        return appointments;
+    }
+
+    public ArrayList<CustomerReport> getAppointmentsCustomerMonth() throws SQLException {
+        stmt = con.createStatement();
+        rs = stmt.executeQuery("SELECT customers.customer_name,appointments.Type,COUNT(*) AS 'Count' FROM appointments INNER JOIN users ON appointments.user_id=users.user_id INNER JOIN customers ON appointments.customer_id=customers.customer_id INNER JOIN contacts ON appointments.contact_id=contacts.contact_id GROUP BY MONTH(appointments.start), customers.Customer_Name");
+        ArrayList<CustomerReport> reports = new ArrayList<>();
+        while(rs.next()) {
+            CustomerReport report = new CustomerReport();
+            report.setCustomerName(rs.getString("customer_name"));
+            report.setAppointmentType(rs.getString("type"));
+            report.setCount(rs.getInt("count"));
+
+            reports.add(report);
+        }
+        return reports;
+    }
+
+    public ArrayList<Appointment> getSchedulePerContact(String contact) throws SQLException {
+        stmt = con.createStatement();
+        PreparedStatement ps = con.prepareStatement("SELECT appointments.appointment_id, appointments.Title, appointments.Type, appointments.Description, appointments.start, appointments.end, customers.Customer_ID, contacts.Contact_ID, customers.customer_name, contacts.contact_name FROM appointments INNER JOIN users ON appointments.user_id=users.user_id INNER JOIN customers ON appointments.customer_id=customers.customer_id INNER JOIN contacts ON appointments.contact_id=contacts.contact_id where contacts.contact_name = ?");
+        ps.setString(1,contact);
+        rs = ps.executeQuery();
+
+        ArrayList<Appointment> appointments = new ArrayList<>();
+        while(rs.next()) {
+            Appointment appointment = new Appointment();
+            appointment.setAppointment_id(rs.getInt("appointment_id"));
+            appointment.setTitle(rs.getString("title"));
+            appointment.setDesc(rs.getString("description"));
+            appointment.setType(rs.getString("type"));
+            appointment.setStartDate(appUtils.GMTTolocal(rs.getTimestamp("start")));
+            appointment.setEndDate(appUtils.GMTTolocal(rs.getTimestamp("end")));
+            appointment.setCust_id(rs.getInt("customer_id"));
+            appointment.setContact_id(rs.getInt("contact_id"));
+            appointment.setCont_name(rs.getString("contact_name"));
+            appointments.add(appointment);
+        }
+        return appointments;
+    }
+
+    public ArrayList<Appointment> getSchedulePerUser(String contact) throws SQLException {
+        stmt = con.createStatement();
+        PreparedStatement ps = con.prepareStatement("SELECT appointments.created_by, appointments.appointment_id, appointments.Title, appointments.Type, appointments.Description, appointments.start, appointments.end, customers.Customer_ID, contacts.Contact_ID, customers.customer_name, contacts.contact_name FROM appointments INNER JOIN users ON appointments.user_id=users.user_id INNER JOIN customers ON appointments.customer_id=customers.customer_id INNER JOIN contacts ON appointments.contact_id=contacts.contact_id where appointments.created_by = ?");
+        ps.setString(1,contact);
+        rs = ps.executeQuery();
+
+        ArrayList<Appointment> appointments = new ArrayList<>();
+        while(rs.next()) {
+            Appointment appointment = new Appointment();
+            appointment.setAppointment_id(rs.getInt("appointment_id"));
+            appointment.setTitle(rs.getString("title"));
+            appointment.setDesc(rs.getString("description"));
+            appointment.setType(rs.getString("type"));
+            appointment.setStartDate(appUtils.GMTTolocal(rs.getTimestamp("start")));
+            appointment.setEndDate(appUtils.GMTTolocal(rs.getTimestamp("end")));
+            appointment.setUser_name(rs.getString("created_by"));
+            appointment.setContact_id(rs.getInt("contact_id"));
+            appointment.setCont_name(rs.getString("contact_name"));
             appointments.add(appointment);
         }
         return appointments;

@@ -5,12 +5,10 @@ import ed.wgu.zamzow.software_ii.database.DBWrite;
 import ed.wgu.zamzow.software_ii.objects.Country;
 import ed.wgu.zamzow.software_ii.objects.Customer;
 import ed.wgu.zamzow.software_ii.objects.Division;
-import ed.wgu.zamzow.software_ii.objects.User;
 import ed.wgu.zamzow.software_ii.utils.Vars;
 import ed.wgu.zamzow.software_ii.utils.appUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -23,6 +21,11 @@ import java.util.ArrayList;
 
 import static ed.wgu.zamzow.software_ii.utils.Vars.dbError;
 
+/**
+ * Controller to modify the selected customer
+ *
+ * @author Bret Zamzow
+ */
 public class ModCustomerViewController {
 
     public ChoiceBox chDivisions;
@@ -37,6 +40,9 @@ public class ModCustomerViewController {
     private ArrayList<Country> countries;
     private DBQuery dbQuery;
 
+    /**
+     * Method to initialize the form and setup the main parts
+     */
     public void initialize() {
         dbQuery = new DBQuery();
         try {
@@ -76,12 +82,19 @@ public class ModCustomerViewController {
         Vars.lang = appUtils.getLanguange();
     }
 
+    /**
+     * Method to set which customer is being modified
+     * @param currentCust
+     */
     public void setCustomer(Customer currentCust) {
         this.currentCust = currentCust;
 
         LoadData();
     }
 
+    /**
+     * Method to load data into the form
+     */
     private void LoadData() {
         txtCustID.setText(String.valueOf(currentCust.getCustomer_id()));
         txtAddress.setText(currentCust.getAddress());
@@ -97,6 +110,9 @@ public class ModCustomerViewController {
         }
     }
 
+    /**
+     * Method to save the changes into the database
+     */
     @FXML
     public void save() {
         long millis=System.currentTimeMillis();

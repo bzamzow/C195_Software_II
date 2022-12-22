@@ -3,7 +3,6 @@ package ed.wgu.zamzow.software_ii.controllers;
 import ed.wgu.zamzow.software_ii.database.DBQuery;
 import ed.wgu.zamzow.software_ii.database.DBWrite;
 import ed.wgu.zamzow.software_ii.objects.Customer;
-import ed.wgu.zamzow.software_ii.objects.Division;
 import ed.wgu.zamzow.software_ii.utils.Vars;
 import ed.wgu.zamzow.software_ii.utils.appUtils;
 import javafx.collections.FXCollections;
@@ -18,14 +17,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Array;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 
-import static ed.wgu.zamzow.software_ii.utils.Vars.dbError;
 
+/**
+ * Controller to show all customers
+ *
+ * @author Bret Zamzow
+ */
 public class ShowCustomersViewController {
 
     public TableView<Customer> tblCustomers;
@@ -34,6 +33,9 @@ public class ShowCustomersViewController {
     private ObservableList<Customer> allCustomers;
     private DBQuery dbQuery;
 
+    /**
+     * Method to initialize the form and setup the main parts
+     */
     public void initialize() {
         dbQuery = new DBQuery();
         try {
@@ -45,6 +47,9 @@ public class ShowCustomersViewController {
         Vars.lang = appUtils.getLanguange();
     }
 
+    /**
+     * Method to load data from the database into the form
+     */
     private void LoadData() {
         colName.setCellValueFactory(new PropertyValueFactory("customer_name"));
         colPhone.setCellValueFactory(new PropertyValueFactory("phone"));
@@ -55,6 +60,9 @@ public class ShowCustomersViewController {
         tblCustomers.setItems(allCustomers);
     }
 
+    /**
+     * Method to open the modify customer view based on the selected customer
+     */
     @FXML
     private void ModifyCustomer() {
         Customer customer = tblCustomers.getSelectionModel().getSelectedItem();
@@ -80,6 +88,9 @@ public class ShowCustomersViewController {
 
     }
 
+    /**
+     * Method to delete the selected customer if confirmed
+     */
     @FXML
     private void DeleteCustomer() {
         Customer customer = tblCustomers.getSelectionModel().getSelectedItem();

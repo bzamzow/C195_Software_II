@@ -2,7 +2,6 @@ package ed.wgu.zamzow.software_ii.controllers;
 
 import ed.wgu.zamzow.software_ii.database.DBQuery;
 import ed.wgu.zamzow.software_ii.objects.Appointment;
-import ed.wgu.zamzow.software_ii.objects.Contact;
 import ed.wgu.zamzow.software_ii.objects.User;
 import ed.wgu.zamzow.software_ii.utils.Vars;
 import ed.wgu.zamzow.software_ii.utils.appUtils;
@@ -19,6 +18,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Controller to view the user reports
+ *
+ * @author Bret Zamzow
+ */
 public class UsersReportsViewController {
 
     public TableView<Appointment> tblUsersReport;
@@ -36,6 +40,9 @@ public class UsersReportsViewController {
     private DBQuery dbQuery;
     private ArrayList<User> users;
 
+    /**
+     * Method to initialize the form and setup the main parts
+     */
     public void initialize() {
         dbQuery = new DBQuery();
         try {
@@ -64,6 +71,9 @@ public class UsersReportsViewController {
         Vars.lang = appUtils.getLanguange();
     }
 
+    /**
+     * Method to load the data from the database into the tableview
+     */
     private void LoadData() {
         colUser.setCellValueFactory(new PropertyValueFactory("user_name"));
         colType.setCellValueFactory(new PropertyValueFactory("type"));

@@ -3,6 +3,7 @@ package ed.wgu.zamzow.software_ii.controllers;
 import ed.wgu.zamzow.software_ii.database.DBQuery;
 import ed.wgu.zamzow.software_ii.objects.Appointment;
 import ed.wgu.zamzow.software_ii.utils.appUtils;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -26,6 +27,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import static ed.wgu.zamzow.software_ii.utils.Vars.appointments;
 import static ed.wgu.zamzow.software_ii.utils.Vars.futureAppointments;
 
+/**
+ * Controller for the main screen of the application. This is the overall main portion that allows the user to manipulate data and add information
+ *
+ * @author Bret Zamzow
+ */
+
 public class MainController {
     public MenuItem mFClose;
     public MenuItem mCAdd;
@@ -41,6 +48,9 @@ public class MainController {
     public MenuItem rprtContact;
     public MenuItem rprtUser;
 
+    /**
+     * Method to initialize the form and setup the main parts of the form
+     */
     public void initialize() {
         DBQuery dbQuery = new DBQuery();
         try {
@@ -70,11 +80,17 @@ public class MainController {
         Check15Mins();
     }
 
+    /**
+     * Method to close the application
+     */
     @FXML
     public void close() {
-
+        Platform.exit();
     }
 
+    /**
+     * Method to see if any appointments are coming up within 15 minutes and alert the user if they are
+     */
     private void Check15Mins() {
         AtomicBoolean appointmentSoon = new AtomicBoolean(false);
         futureAppointments.forEach( (n) -> {
@@ -94,6 +110,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Method to open the add customers form
+     */
     @FXML
     public void calAdd() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
@@ -109,6 +128,9 @@ public class MainController {
         stage.show();
     }
 
+    /**
+     * Method to open the show customers view form
+     */
     @FXML
     public void calMod() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
@@ -124,6 +146,9 @@ public class MainController {
         stage.show();
     }
 
+    /**
+     * Method open the add appointment view
+     */
     @FXML
     public void aAdd() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
@@ -139,6 +164,9 @@ public class MainController {
         stage.show();
     }
 
+    /**
+     * Method to open the modify or show appointments views depending on if any appointments are selected
+     */
     @FXML
     public void aMod() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
@@ -167,6 +195,9 @@ public class MainController {
         stage.show();
     }
 
+    /**
+     * Method to open the show appointments view
+     */
     @FXML
     public void aView() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
@@ -182,6 +213,9 @@ public class MainController {
         stage.show();
     }
 
+    /**
+     * Method to open the log viewer
+     */
     @FXML
     public void viewLogs() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
@@ -197,6 +231,9 @@ public class MainController {
         stage.show();
     }
 
+    /**
+     * Method to open the readme viewer
+     */
     @FXML
     public void viewReadMe() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
@@ -213,7 +250,9 @@ public class MainController {
     }
 
 
-
+    /**
+     * Method to open the view report for customers
+     */
     @FXML
     public void viewReportCustomer() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
@@ -228,6 +267,10 @@ public class MainController {
         stage.setScene(new Scene(mainRoot));
         stage.show();
     }
+
+    /**
+     * Method to open the view report for contacts
+     */
     @FXML
     public void viewReportContact() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
@@ -242,6 +285,10 @@ public class MainController {
         stage.setScene(new Scene(mainRoot));
         stage.show();
     }
+
+    /**
+     * Method to open the view report for users
+     */
     @FXML
     public void viewReportUser() {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources");

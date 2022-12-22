@@ -13,12 +13,27 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * Class that contains common methods used throughout the application
+ *
+ * @author Bret Zamzow
+ */
 public class appUtils {
 
+    /**
+     * Method to get the current language
+     * @return
+     */
     public static String getLanguange() {
         return Locale.getDefault().getLanguage();
     }
 
+    /**
+     * Method to show an error writing to the database
+     * @param type
+     * @param table
+     * @param error
+     */
     public static void ShowDBWriteError(String type, String table, String error) {
         Alert warn = new Alert(Alert.AlertType.ERROR);
         warn.setTitle("Error");
@@ -26,6 +41,13 @@ public class appUtils {
         warn.show();
     }
 
+    /**
+     * Method to convert the date and time into a timestamp for use int he databse
+     * @param initDate
+     * @param hour
+     * @param minute
+     * @return
+     */
     public static Timestamp convertDateTime(String initDate, String hour, String minute) {
         Timestamp returnDateTime = null;
         Calendar cal = getCalendarDateTime(initDate, hour, minute);
@@ -34,6 +56,11 @@ public class appUtils {
         return returnDateTime;
     }
 
+    /**
+     * Method to convert local time into GMT or UTC
+     * @param cal
+     * @return
+     */
     public static Timestamp localToGMT(Timestamp cal) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -43,6 +70,11 @@ public class appUtils {
         return new Timestamp(date.getTime());
     }
 
+    /**
+     * Method to convert GMT or UTC to local time
+     * @param cal
+     * @return
+     */
     public static Timestamp GMTTolocal(Timestamp cal) {
         Date date = new Date(cal.getTime());
         String timeZone = Calendar.getInstance().getTimeZone().getID();
@@ -50,6 +82,13 @@ public class appUtils {
         return new Timestamp(local.getTime());
     }
 
+    /**
+     * Method to get a calendar object of the date and time
+     * @param initDate
+     * @param hour
+     * @param minute
+     * @return
+     */
     private static Calendar getCalendarDateTime(String initDate, String hour, String minute) {
         Calendar cal  = Calendar.getInstance();
         if (initDate.contains("/")) {
@@ -76,6 +115,12 @@ public class appUtils {
        return cal;
     }
 
+    /**
+     * Method to split the date for various uses
+     * @param isDate
+     * @param dateTime
+     * @return
+     */
     public static String splitDate(boolean isDate, String dateTime) {
         String[] splitDateTime = dateTime.split(" ");
         if (isDate) {
@@ -85,6 +130,12 @@ public class appUtils {
         }
     }
 
+    /**
+     * Method to split the time for various uses
+     * @param type
+     * @param time
+     * @return
+     */
     public static String splitTime(int type, String time) {
         String[] splitTime = time.split(":");
         if (type == 1) {
@@ -94,6 +145,11 @@ public class appUtils {
         }
     }
 
+    /**
+     * Method to determine if an appointment is starting soon
+     * @param appointment
+     * @return
+     */
     public static Boolean isAppointmentStartingSoon(Appointment appointment) {
         boolean isAppointmentStartingSoon = false;
         String date = splitDate(true, appointment.getStartDate().toString());
@@ -111,6 +167,10 @@ public class appUtils {
         return  isAppointmentStartingSoon;
     }
 
+    /**
+     * Method to determine the number of hours ahead of or behind GMT or UTC
+     * @return
+     */
     public static int hourOffset() {
         Calendar est = Calendar.getInstance(TimeZone.getTimeZone("EST"));
 

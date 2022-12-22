@@ -22,6 +22,11 @@ import java.util.List;
 
 import static ed.wgu.zamzow.software_ii.utils.Vars.*;
 
+/**
+ * Controller for modifying appointments
+ *
+ * @author Bret Zamzow
+ */
 public class ModAppointmentViewController {
 
     public TextField txtTitle;
@@ -41,6 +46,9 @@ public class ModAppointmentViewController {
     private Appointment currentAppointment;
     private int index;
 
+    /**
+     * Method to initialize the form and setup the main parts of the form
+     */
     public void initialize() {
         dbQuery = new DBQuery();
 
@@ -73,6 +81,10 @@ public class ModAppointmentViewController {
         Vars.lang = appUtils.getLanguange();
     }
 
+    /**
+     * Method to save the changes to the database and display in the application
+     * @throws SQLException
+     */
     @FXML
     public void save() throws SQLException {
         long millis=System.currentTimeMillis();
@@ -173,12 +185,20 @@ public class ModAppointmentViewController {
         }
     }
 
+    /**
+     * Method to set which appointment is being modified
+     * @param currentAppointment
+     * @param index
+     */
     public void setAppointment(Appointment currentAppointment, int index) {
         this.currentAppointment = currentAppointment;
         this.index = index;
         LoadData();
     }
 
+    /**
+     * Method to load data from the database into the form
+     */
     private void LoadData() {
         txtAppointmentID.setText(String.valueOf(currentAppointment.getAppointment_id()));
         txtTitle.setText(currentAppointment.getTitle());

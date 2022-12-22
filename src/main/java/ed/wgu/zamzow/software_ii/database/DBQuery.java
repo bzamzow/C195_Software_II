@@ -13,12 +13,20 @@ import java.util.ResourceBundle;
 
 import static ed.wgu.zamzow.software_ii.utils.Vars.con;
 
+/**
+ * Class the holds all of the database queries for the application
+ *
+ * @author Bret Zamzow
+ */
 public class DBQuery {
 
     private Statement stmt;
     private ResultSet rs;
     private ResourceBundle bundle;
 
+    /**
+     * Initialize the class and create the connection
+     */
     public DBQuery() {
         try {
             con = DBConnect.ConnectToDB();
@@ -29,6 +37,13 @@ public class DBQuery {
 
     }
 
+    /**
+     * Method to sign-in
+     * @param username
+     * @param password
+     * @return True/False depending on success status
+     * @throws SQLException
+     */
     public boolean signIn(String username, String password) throws SQLException {
         boolean signIn = false;
         User user = getUser(username);
@@ -56,6 +71,11 @@ public class DBQuery {
         return signIn;
     }
 
+    /**
+     * Method to get a list of customers
+     * @return list of customer objects
+     * @throws SQLException
+     */
     public List<Customer> getCustomers() throws SQLException {
         List<Customer> customers = new ArrayList<>();
         stmt = con.createStatement();
@@ -77,6 +97,12 @@ public class DBQuery {
         return customers;
     }
 
+    /**
+     * Method to get a specific customer based on customer's name
+     * @param customer_name
+     * @return Customer object found in the database
+     * @throws SQLException
+     */
     public Customer getCustomer(String customer_name) throws SQLException {
         Customer cust = null;
         stmt = con.createStatement();
@@ -98,6 +124,12 @@ public class DBQuery {
         return cust;
     }
 
+    /**
+     * Method to get a specific user
+     * @param username
+     * @return User object for user found in the database
+     * @throws SQLException
+     */
     public User getUser(String username) throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM users WHERE user_name = '" + username + "'");
@@ -116,6 +148,11 @@ public class DBQuery {
         return user;
     }
 
+    /**
+     * Method to get a list of all users found in the database
+     * @return List of user objects
+     * @throws SQLException
+     */
     public ArrayList<User> getUsers() throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM users");
@@ -135,6 +172,12 @@ public class DBQuery {
         return users;
     }
 
+    /**
+     * Method to get a specific user using user id
+     * @param user_id
+     * @return User object
+     * @throws SQLException
+     */
     public User getUser(int user_id) throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM users WHERE user_id = " + user_id);
@@ -153,6 +196,11 @@ public class DBQuery {
         return user;
     }
 
+    /**
+     * Method to get a list of divisions
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Division> getDivisions() throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM `first-level divisions`");
@@ -166,6 +214,12 @@ public class DBQuery {
         return divisions;
     }
 
+    /**
+     * Method to get a list of divisions sharing a country id
+     * @param country_id
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Division> getDivisions(int country_id) throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM `first-level divisions` WHERE country_id = " + country_id);
@@ -179,6 +233,12 @@ public class DBQuery {
         return divisions;
     }
 
+    /**
+     * Method to get a specific division using division ID
+     * @param division_id
+     * @return
+     * @throws SQLException
+     */
     public Division getDivision(int division_id) throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM `first-level divisions` WHERE division_id = " + division_id);
@@ -191,6 +251,11 @@ public class DBQuery {
         return division;
     }
 
+    /**
+     * Method to get a list of countries
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Country> getCountries() throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM countries");
@@ -204,6 +269,12 @@ public class DBQuery {
         return countries;
     }
 
+    /**
+     * Method to get a specific country
+     * @param country
+     * @return
+     * @throws SQLException
+     */
     public Country getCountry(String country) throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM countries WHERE country = '" + country + "'");
@@ -217,6 +288,11 @@ public class DBQuery {
         return c;
     }
 
+    /**
+     * Method to get a list of appointments
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Appointment> getAppointments() throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM appointments INNER JOIN users ON appointments.user_id=users.user_id " +
@@ -247,6 +323,11 @@ public class DBQuery {
         return appointments;
     }
 
+    /**
+     * Method to get a count of appointments per customer and type for the month
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<CustomerReport> getAppointmentsCustomerMonth() throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT customers.customer_name,appointments.Type,COUNT(*) AS 'Count' FROM appointments INNER JOIN users ON appointments.user_id=users.user_id INNER JOIN customers ON appointments.customer_id=customers.customer_id INNER JOIN contacts ON appointments.contact_id=contacts.contact_id GROUP BY MONTH(appointments.start), customers.Customer_Name");
@@ -262,6 +343,12 @@ public class DBQuery {
         return reports;
     }
 
+    /**
+     * Method to get each contact's schedule
+     * @param contact
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Appointment> getSchedulePerContact(String contact) throws SQLException {
         stmt = con.createStatement();
         PreparedStatement ps = con.prepareStatement("SELECT appointments.appointment_id, appointments.Title, appointments.Type, appointments.Description, appointments.start, appointments.end, customers.Customer_ID, contacts.Contact_ID, customers.customer_name, contacts.contact_name FROM appointments INNER JOIN users ON appointments.user_id=users.user_id INNER JOIN customers ON appointments.customer_id=customers.customer_id INNER JOIN contacts ON appointments.contact_id=contacts.contact_id where contacts.contact_name = ?");
@@ -285,6 +372,12 @@ public class DBQuery {
         return appointments;
     }
 
+    /**
+     * Method to get a list of appointments created by each user
+     * @param contact
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Appointment> getSchedulePerUser(String contact) throws SQLException {
         stmt = con.createStatement();
         PreparedStatement ps = con.prepareStatement("SELECT appointments.created_by, appointments.appointment_id, appointments.Title, appointments.Type, appointments.Description, appointments.start, appointments.end, customers.Customer_ID, contacts.Contact_ID, customers.customer_name, contacts.contact_name FROM appointments INNER JOIN users ON appointments.user_id=users.user_id INNER JOIN customers ON appointments.customer_id=customers.customer_id INNER JOIN contacts ON appointments.contact_id=contacts.contact_id where appointments.created_by = ?");
@@ -308,6 +401,11 @@ public class DBQuery {
         return appointments;
     }
 
+    /**
+     * Method to get a list of appointments that have not yet happened
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Appointment> getFutureAppointments() throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM appointments INNER JOIN users ON appointments.user_id=users.user_id " +
@@ -339,6 +437,11 @@ public class DBQuery {
         return appointments;
     }
 
+    /**
+     * Method to get list of appointments for the week
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Appointment> getWeeklyAppointments() throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM appointments INNER JOIN users ON appointments.user_id=users.user_id INNER JOIN customers ON appointments.customer_id=customers.customer_id INNER JOIN contacts ON appointments.contact_id=contacts.contact_id WHERE MONTH(appointments.start) = MONTH(CURRENT_DATE()) AND YEAR(appointments.Start) = YEAR(CURRENT_DATE())");
@@ -368,6 +471,11 @@ public class DBQuery {
         return appointments;
     }
 
+    /**
+     * Method to get a list of appointments for the month
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Appointment> getMonthlyAppointments() throws SQLException {
         stmt = con.createStatement();
         rs = stmt.executeQuery("SELECT * FROM appointments INNER JOIN users ON appointments.user_id=users.user_id INNER JOIN customers ON appointments.customer_id=customers.customer_id INNER JOIN contacts ON appointments.contact_id=contacts.contact_id WHERE MONTH(appointments.start) = MONTH(CURRENT_DATE()) AND YEAR(appointments.Start) = YEAR(CURRENT_DATE())");
@@ -397,6 +505,12 @@ public class DBQuery {
         return appointments;
     }
 
+    /**
+     * Method to get a list of conflicts for the appointment being checked
+     * @param checkingAppointment
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Appointment> getConflicts(Appointment checkingAppointment) throws SQLException {
         stmt = con.createStatement();
 
@@ -435,6 +549,12 @@ public class DBQuery {
         return appointments;
     }
 
+    /**
+     * Method to get a specific contact using contact name
+     * @param contact_name
+     * @return
+     * @throws SQLException
+     */
     public Contact getContact(String contact_name) throws SQLException {
         Contact cont = null;
         stmt = con.createStatement();
@@ -449,6 +569,12 @@ public class DBQuery {
         return cont;
     }
 
+    /**
+     * Method to get a specific contact using contact ID
+     * @param contact_id
+     * @return
+     * @throws SQLException
+     */
     public Contact getContact(int contact_id) throws SQLException {
         Contact cont = null;
         stmt = con.createStatement();
@@ -463,6 +589,11 @@ public class DBQuery {
         return cont;
     }
 
+    /**
+     * Method to get a list of all contacts
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Contact> getContacts() throws SQLException {
         ArrayList<Contact> contacts = new ArrayList<>();
         stmt = con.createStatement();

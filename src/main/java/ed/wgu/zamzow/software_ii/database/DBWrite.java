@@ -9,10 +9,18 @@ import java.sql.Timestamp;
 
 import static ed.wgu.zamzow.software_ii.utils.Vars.*;
 
+/**
+ * Class that contains all database write functions
+ *
+ * @author Bret Zamzow
+ */
 public class DBWrite {
 
     private PreparedStatement stmt;
 
+    /**
+     * Method to instantiate the object and connect to the database
+     */
     public DBWrite() {
         try {
             con = DBConnect.ConnectToDB();
@@ -21,6 +29,11 @@ public class DBWrite {
         }
     }
 
+    /**
+     * Method to add a new customer
+     * @param newCustomer
+     * @return
+     */
     public boolean AddCustomer(Customer newCustomer) {
         boolean didWrite = false;
 
@@ -49,6 +62,11 @@ public class DBWrite {
         return didWrite;
     }
 
+    /**
+     * Method to modify a customer
+     * @param currentCust
+     * @return
+     */
     public boolean ModCustomer(Customer currentCust) {
         boolean didWrite = false;
 
@@ -71,6 +89,11 @@ public class DBWrite {
         return didWrite;
     }
 
+    /**
+     * Method to delete a customer
+     * @param currentCust
+     * @return
+     */
     public boolean DeleteCustomer(Customer currentCust) {
         boolean didWrite = false;
 
@@ -89,6 +112,11 @@ public class DBWrite {
         return didWrite;
     }
 
+    /**
+     * Method to add an appointment
+     * @param appointment
+     * @return
+     */
     public boolean AddAppointment(Appointment appointment) {
         boolean didWrite = false;
 
@@ -121,6 +149,11 @@ public class DBWrite {
         return didWrite;
     }
 
+    /**
+     * Method to modify an appointment
+     * @param currentAppointment
+     * @return
+     */
     public boolean ModAppointment(Appointment currentAppointment) {
         boolean didWrite = false;
 
@@ -145,6 +178,11 @@ public class DBWrite {
         return didWrite;
     }
 
+    /**
+     * Method to delete an appointment
+     * @param currentAppointment
+     * @return
+     */
     public boolean DeleteAppointment(Appointment currentAppointment) {
         boolean didWrite = false;
 
@@ -163,6 +201,11 @@ public class DBWrite {
         return didWrite;
     }
 
+    /**
+     * Method to delete a customers appointments. This only gets used if deleting a customer
+     * @param customer_id
+     * @return
+     */
     public boolean DeleteCustomerAppointments(int customer_id) {
         boolean didWrite = false;
 

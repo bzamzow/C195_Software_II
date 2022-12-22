@@ -3,9 +3,20 @@ package ed.wgu.zamzow.software_ii.utils;
 import java.io.*;
 import java.util.Scanner;
 
+/**
+ * Class that allows for reading and writing of logs
+ *
+ * @author Bret Zamzow
+ */
 public class Logging {
     private static final String LOG_LOCATION = "./login_activity.txt";
 
+    /**
+     * Method to add an entry to the log file
+     * @param timestamp
+     * @param successful
+     * @param message
+     */
     public static void AddToLog(String timestamp, String successful, String message) {
         try {
             CreateFile();
@@ -17,6 +28,10 @@ public class Logging {
         }
     }
 
+    /**
+     * Method to read the log file
+     * @return
+     */
     public static String ReadLog() {
         String logs = "";
         if (FileExists()) {
@@ -34,11 +49,18 @@ public class Logging {
         return logs;
     }
 
+    /**
+     * Method to check if the log file exists
+     * @return
+     */
     private static boolean FileExists() {
         File logFile = new File(LOG_LOCATION);
         return logFile.exists();
     }
 
+    /**
+     * Method to create the log file if it doesn't exist
+     */
     private static void CreateFile() {
         File logFile = new File(LOG_LOCATION);
         if (!FileExists()) {

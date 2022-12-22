@@ -22,6 +22,12 @@ import java.util.Objects;
 import java.time.*;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the login form that allows users to login to the application
+ *
+ * @author Bret Zamzow
+ */
+
 public class LoginViewController {
     public PasswordField txtPass;
     public Button btnSignIn;
@@ -30,12 +36,18 @@ public class LoginViewController {
     @FXML
     private TextField txtUName;
 
+    /**
+     * Method to initialize the form and setup the main parts of the form
+     */
     public void initialize() {
         ZoneId zoneId = ZoneId.systemDefault();
         lblZone.setText(zoneId.toString());
         Vars.lang = appUtils.getLanguange();
     }
 
+    /**
+     * Method to sign in and check the login information against the database. If the sign in is successful, this form will open the main view
+     */
     @FXML
     protected void signIn() {
         if (!txtPass.getText().isEmpty() || !txtPass.getText().isBlank()) {

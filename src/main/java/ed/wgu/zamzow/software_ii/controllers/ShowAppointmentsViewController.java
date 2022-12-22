@@ -22,6 +22,11 @@ import java.sql.SQLException;
 
 import static ed.wgu.zamzow.software_ii.utils.Vars.futureAppointments;
 
+/**
+ * Controller to display all weekly and monthly appointments
+ *
+ * @author Bret Zamzow
+ */
 public class ShowAppointmentsViewController {
 
     public Button btnDel, btnMod;
@@ -40,6 +45,9 @@ public class ShowAppointmentsViewController {
     private ObservableList<Appointment> weeklyAppointments;
     private DBQuery dbQuery;
 
+    /**
+     * Method to initialize the form and setup the main parts
+     */
     public void initialize() {
         dbQuery = new DBQuery();
         try {
@@ -53,6 +61,9 @@ public class ShowAppointmentsViewController {
         Vars.lang = appUtils.getLanguange();
     }
 
+    /**
+     * Method to load data from the database into the form
+     */
     private void LoadData() {
         colID.setCellValueFactory(new PropertyValueFactory("appointment_id"));
         colTitle.setCellValueFactory(new PropertyValueFactory("title"));
@@ -83,6 +94,9 @@ public class ShowAppointmentsViewController {
 
     }
 
+    /**
+     * Method to open the modify appointment view using the selected appointment
+     */
     @FXML
     private void ModifyAppointment() {
         Appointment appointment = tblWeeklyAppointments.getSelectionModel().getSelectedItem();
@@ -106,6 +120,9 @@ public class ShowAppointmentsViewController {
 
     }
 
+    /**
+     * Method to delete the selected appointment if confirmed
+     */
     @FXML
     private void DeleteAppointment() {
         Appointment appointment = tblWeeklyAppointments.getSelectionModel().getSelectedItem();

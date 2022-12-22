@@ -20,6 +20,12 @@ import java.util.ArrayList;
 
 import static ed.wgu.zamzow.software_ii.utils.Vars.dbError;
 
+/**
+ * Controller for adding customers
+ *
+ * @author Bret Zamzow
+ */
+
 public class AddCustomerViewController {
 
     public ChoiceBox chDivisions;
@@ -31,6 +37,9 @@ public class AddCustomerViewController {
     private ArrayList<Division> divisions;
     private ArrayList<Country> countries;
 
+    /**
+     * Method to initialize the form and setup the main parts
+     */
     public void initialize() {
         DBQuery dbQuery = new DBQuery();
         try {
@@ -61,6 +70,9 @@ public class AddCustomerViewController {
         Vars.lang = appUtils.getLanguange();
     }
 
+    /**
+     * Method to save the customer to the database
+     */
     @FXML
     public void save() {
         long millis=System.currentTimeMillis();

@@ -3,7 +3,6 @@ package ed.wgu.zamzow.software_ii.controllers;
 import ed.wgu.zamzow.software_ii.database.DBQuery;
 import ed.wgu.zamzow.software_ii.objects.Appointment;
 import ed.wgu.zamzow.software_ii.objects.Contact;
-import ed.wgu.zamzow.software_ii.objects.CustomerReport;
 import ed.wgu.zamzow.software_ii.utils.Vars;
 import ed.wgu.zamzow.software_ii.utils.appUtils;
 import javafx.beans.value.ChangeListener;
@@ -11,7 +10,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -20,6 +18,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Controller for viewing the contacts reports
+ *
+ * @author Bret Zamzow
+ */
 public class ContactsReportsViewController {
 
     public TableView<Appointment> tblContactReport;
@@ -37,6 +40,9 @@ public class ContactsReportsViewController {
     private DBQuery dbQuery;
     private ArrayList<Contact> contacts;
 
+    /**
+     * Method to initialize the and setup the main parts of the form
+     */
     public void initialize() {
         dbQuery = new DBQuery();
         try {
@@ -65,6 +71,9 @@ public class ContactsReportsViewController {
         Vars.lang = appUtils.getLanguange();
     }
 
+    /**
+     * Method to load data from the database into the table for display
+     */
     private void LoadData() {
         colCustomer.setCellValueFactory(new PropertyValueFactory("cust_id"));
         colType.setCellValueFactory(new PropertyValueFactory("type"));

@@ -4,7 +4,11 @@ import java.sql.*;
 import java.util.Properties;
 import java.sql.DriverManager;
 
-
+/**
+ * Class that holds the connection data and creates the connection for all read and write
+ *
+ * @author Bret Zamzow
+ */
 
 public class DBConnect {
 
@@ -13,6 +17,11 @@ public class DBConnect {
     private static final String username = "sqlUser";
     private static final String pass = "Passw0rd!";
 
+    /**
+     * Method to establish a connection to the database
+     * @return The connection to be used throughout the application
+     * @throws Exception
+     */
     public static Connection ConnectToDB() throws Exception{
 
         Connection con = null;
@@ -26,6 +35,11 @@ public class DBConnect {
         return con;
     }
 
+    /**
+     * Method to close the connection
+     * @param con
+     * @throws Exception
+     */
     public static void CloseConnection(Connection con) throws Exception {
         con.close();
     }

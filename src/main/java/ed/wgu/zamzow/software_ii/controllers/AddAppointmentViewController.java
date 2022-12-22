@@ -5,7 +5,6 @@ import ed.wgu.zamzow.software_ii.database.DBWrite;
 import ed.wgu.zamzow.software_ii.objects.*;
 import ed.wgu.zamzow.software_ii.utils.Vars;
 import ed.wgu.zamzow.software_ii.utils.appUtils;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -20,6 +19,12 @@ import java.util.Date;
 import java.util.List;
 
 import static ed.wgu.zamzow.software_ii.utils.Vars.*;
+
+/**
+ * Controller for adding appointments
+ *
+ * @author Bret Zamzow
+ */
 
 public class AddAppointmentViewController {
 
@@ -36,6 +41,9 @@ public class AddAppointmentViewController {
     private List<Customer> customers;
     private ArrayList<Contact> contacts;
 
+    /**
+     * Method to initialize the form, setting up the main parts
+     */
     public void initialize() {
         dbQuery = new DBQuery();
 
@@ -72,6 +80,10 @@ public class AddAppointmentViewController {
         Vars.lang = appUtils.getLanguange();
     }
 
+    /**
+     * Method to save the appointment to the database and display in the application
+     * @throws SQLException
+     */
     @FXML
     public void save() throws SQLException {
         long millis=System.currentTimeMillis();

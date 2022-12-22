@@ -12,7 +12,22 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * This application allows users to create scheduling and view reports
+ * for customers as a part of the consulting that is offered by their firm
+ * Users can add, modify, and delete customers as well as appointments
+ * @version 1.0
+ * @author Bret Zamzow
+ * JAVADOC location src/main/resources/JAVADOC
+ */
+
+
 public class MainApplication extends Application {
+
+    /**
+     * Method to start the login process
+     * @param stage
+     */
     @Override
     public void start(Stage stage) {
         Locale locale = Locale.getDefault();

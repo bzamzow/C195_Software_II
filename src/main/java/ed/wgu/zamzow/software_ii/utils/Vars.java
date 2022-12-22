@@ -6,7 +6,13 @@ import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 
+/**
+ * Class to hold static objects for use in multiple classes
+ *
+ * @author Bret Zamzow
+ */
 public class Vars {
+
 
     public static Connection con;
     public static String lang;

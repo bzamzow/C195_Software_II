@@ -63,6 +63,11 @@ public class ShowAppointmentsViewController {
 
     /**
      * Method to load data from the database into the form
+     *
+     * <p>
+     *     Using two lambda expressions in this method to setup listeners on the weekly appointments and monthly appointments
+     *     allowing the interface to refresh when there are changes to either set of data
+     * </p>
      */
     private void LoadData() {
         colID.setCellValueFactory(new PropertyValueFactory("appointment_id"));

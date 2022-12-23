@@ -90,9 +90,12 @@ public class MainController {
 
     /**
      * Method to see if any appointments are coming up within 15 minutes and alert the user if they are
+     *
+     * Using Lambda to iterate through future appointments in order to make clear concise code.
      */
     private void Check15Mins() {
         AtomicBoolean appointmentSoon = new AtomicBoolean(false);
+        //Lambda used here
         futureAppointments.forEach( (n) -> {
             if (appUtils.isAppointmentStartingSoon(n)) {
                 appointmentSoon.set(true);

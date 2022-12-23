@@ -47,7 +47,11 @@ public class ModAppointmentViewController {
     private int index;
 
     /**
-     * Method to initialize the form and setup the main parts of the form
+     * Method to initialize the form and set up the main parts of the form
+     * <p>
+     *     Use Lambda here on contacts and customers to provide the most efficient way to add contact and customer names to choice boxes.
+     *     This lambda expression iterates through these two ArrayLists and provides the names to the controls while saving code and time.
+     * </p>
      */
     public void initialize() {
         dbQuery = new DBQuery();

@@ -112,6 +112,10 @@ public class ModCustomerViewController {
 
     /**
      * Method to save the changes into the database
+     *
+     * <p>
+     *     Using a lambda expression to iterate through each division, creating more efficient code
+     * </p>
      */
     @FXML
     public void save() {

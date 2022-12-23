@@ -42,6 +42,10 @@ public class UsersReportsViewController {
 
     /**
      * Method to initialize the form and setup the main parts
+     *
+     * <p>
+     *     Using a lambda expression to iterate through users to quickly and efficiently add the user names to a choicebox
+     * </p>
      */
     public void initialize() {
         dbQuery = new DBQuery();
@@ -73,6 +77,7 @@ public class UsersReportsViewController {
 
     /**
      * Method to load the data from the database into the tableview
+     * Using a lambda expression here to setup a listener for the reporting data
      */
     private void LoadData() {
         colUser.setCellValueFactory(new PropertyValueFactory("user_name"));

@@ -73,6 +73,8 @@ public class ContactsReportsViewController {
 
     /**
      * Method to load data from the database into the table for display
+     * <p>
+     * Used Lambda here to set up a listener for when the reporting changes. Lambda here makes the code much more concise
      */
     private void LoadData() {
         colCustomer.setCellValueFactory(new PropertyValueFactory("cust_id"));

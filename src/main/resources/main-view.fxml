@@ -25,7 +25,7 @@
               <items>
                   <MenuItem fx:id="mAAdd" mnemonicParsing="false" onAction="#aAdd" text="Add" />
                   <MenuItem fx:id="mAModify" mnemonicParsing="false" onAction="#aMod" text="Modify" />
-                  <MenuItem fx:id="mADelete" mnemonicParsing="false" text="Delete" />
+                  <MenuItem fx:id="mADelete" mnemonicParsing="false" onAction="#aDel" text="Delete" />
                   <MenuItem fx:id="mAView" mnemonicParsing="false" onAction="#aView" text="View All" />
               </items>
             </Menu>

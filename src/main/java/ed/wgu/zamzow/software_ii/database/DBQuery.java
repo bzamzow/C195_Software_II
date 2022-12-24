@@ -203,7 +203,7 @@ public class DBQuery {
      */
     public ArrayList<Division> getDivisions() throws SQLException {
         stmt = con.createStatement();
-        rs = stmt.executeQuery("SELECT * FROM `first-level divisions`");
+        rs = stmt.executeQuery("SELECT * FROM `first_level_divisions`");
         ArrayList<Division> divisions = new ArrayList<>();
         while(rs.next()) {
             Division division = new Division();
@@ -222,7 +222,7 @@ public class DBQuery {
      */
     public ArrayList<Division> getDivisions(int country_id) throws SQLException {
         stmt = con.createStatement();
-        rs = stmt.executeQuery("SELECT * FROM `first-level divisions` WHERE country_id = " + country_id);
+        rs = stmt.executeQuery("SELECT * FROM `first_level_divisions` WHERE country_id = " + country_id);
         ArrayList<Division> divisions = new ArrayList<>();
         while(rs.next()) {
             Division division = new Division();
@@ -241,7 +241,7 @@ public class DBQuery {
      */
     public Division getDivision(int division_id) throws SQLException {
         stmt = con.createStatement();
-        rs = stmt.executeQuery("SELECT * FROM `first-level divisions` WHERE division_id = " + division_id);
+        rs = stmt.executeQuery("SELECT * FROM `first_level_divisions` WHERE division_id = " + division_id);
         Division division = new Division();
         while(rs.next()) {
             division.setDivision_id(rs.getInt("division_id"));
@@ -423,7 +423,7 @@ public class DBQuery {
             appointment.setEndDate(appUtils.GMTTolocal(rs.getTimestamp("end")));
             appointment.setCreate_date(rs.getDate("create_date"));
             appointment.setCreated_by(rs.getString("created_by"));
-            appointment.setLast_update(rs.getTimestamp("last_updated"));
+            appointment.setLast_update(rs.getTimestamp("last_update"));
             appointment.setLast_updated_by(rs.getString("last_updated_by"));
             appointment.setCust_id(rs.getInt("customer_id"));
             appointment.setUser_id(rs.getInt("user_id"));
@@ -457,7 +457,7 @@ public class DBQuery {
             appointment.setEndDate(appUtils.GMTTolocal(rs.getTimestamp("end")));
             appointment.setCreate_date(rs.getDate("create_date"));
             appointment.setCreated_by(rs.getString("created_by"));
-            appointment.setLast_update(rs.getTimestamp("last_updated"));
+            appointment.setLast_update(rs.getTimestamp("last_update"));
             appointment.setLast_updated_by(rs.getString("last_updated_by"));
             appointment.setCust_id(rs.getInt("customer_id"));
             appointment.setUser_id(rs.getInt("user_id"));
@@ -491,7 +491,7 @@ public class DBQuery {
             appointment.setEndDate(appUtils.GMTTolocal(rs.getTimestamp("end")));
             appointment.setCreate_date(rs.getDate("create_date"));
             appointment.setCreated_by(rs.getString("created_by"));
-            appointment.setLast_update(rs.getTimestamp("last_updated"));
+            appointment.setLast_update(rs.getTimestamp("last_update"));
             appointment.setLast_updated_by(rs.getString("last_updated_by"));
             appointment.setCust_id(rs.getInt("customer_id"));
             appointment.setUser_id(rs.getInt("user_id"));
@@ -535,7 +535,7 @@ public class DBQuery {
             appointment.setEndDate(appUtils.GMTTolocal(rs.getTimestamp("end")));
             appointment.setCreate_date(rs.getDate("create_date"));
             appointment.setCreated_by(rs.getString("created_by"));
-            appointment.setLast_update(rs.getTimestamp("last_updated"));
+            appointment.setLast_update(rs.getTimestamp("last_update"));
             appointment.setLast_updated_by(rs.getString("last_updated_by"));
             appointment.setCust_id(rs.getInt("customer_id"));
             appointment.setUser_id(rs.getInt("user_id"));

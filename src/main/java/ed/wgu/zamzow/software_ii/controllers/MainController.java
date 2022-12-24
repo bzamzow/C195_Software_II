@@ -1,6 +1,7 @@
 package ed.wgu.zamzow.software_ii.controllers;
 
 import ed.wgu.zamzow.software_ii.database.DBQuery;
+import ed.wgu.zamzow.software_ii.database.DBWrite;
 import ed.wgu.zamzow.software_ii.objects.Appointment;
 import ed.wgu.zamzow.software_ii.utils.appUtils;
 import javafx.application.Platform;
@@ -10,10 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -196,6 +194,44 @@ public class MainController {
         Stage stage = new Stage();
         stage.setScene(new Scene(mainRoot));
         stage.show();
+    }
+
+    public void aDel() {
+        ResourceBundle bundle = ResourceBundle.getBundle("UIResources");
+        URL fxmlLocation;
+
+        if (tblUpcoming.getSelectionModel().getSelectedItem() != null) {
+            Appointment appointment = tblUpcoming.getSelectionModel().getSelectedItem();
+
+            Alert confirm = new Alert(Alert.AlertType.WARNING,"Are you sure you want to delete " + appointment.getTitle(), ButtonType.YES, ButtonType.NO);
+            confirm.setTitle("Delete?");
+            confirm.showAndWait();
+
+            if (confirm.getResult() == ButtonType.YES) {
+                DBWrite dbWrite = new DBWrite();
+                dbWrite.DeleteAppointment(appointment);
+                futureAppointments.remove(appointment);
+            }
+
+        } else {
+            fxmlLocation=getClass().getClassLoader().getResource("show_appointments-view.fxml");
+            Parent mainRoot = null;
+            try {
+                mainRoot = FXMLLoader.load(Objects.requireNonNull(fxmlLocation), bundle);
+                if (tblUpcoming.getSelectionModel().getSelectedItem() != null) {
+                    FXMLLoader loader = new FXMLLoader(fxmlLocation);
+                    mainRoot = loader.load();
+                    ModAppointmentViewController controller = loader.getController();
+                    controller.setAppointment(tblUpcoming.getSelectionModel().getSelectedItem(), tblUpcoming.getSelectionModel().getSelectedIndex());
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Stage stage = new Stage();
+            stage.setScene(new Scene(mainRoot));
+            stage.show();
+        }
+
     }
 
     /**

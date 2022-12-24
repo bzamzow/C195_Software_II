@@ -121,7 +121,7 @@ public class DBWrite {
         boolean didWrite = false;
 
         try {
-            String query = "INSERT INTO appointments (title,description,location,type,start,end,create_date,created_by,last_updated, last_updated_by, customer_id, user_id,contact_id) " +
+            String query = "INSERT INTO appointments (title,description,location,type,start,end,create_date,created_by,last_update, last_updated_by, customer_id, user_id,contact_id) " +
                     "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
             stmt = con.prepareStatement(query);
             stmt.setString(1,appointment.getTitle());
@@ -161,7 +161,7 @@ public class DBWrite {
             String query = "UPDATE appointments set title = '" + currentAppointment.getTitle() +
                     "',description = '" + currentAppointment.getDesc() + "',location = '" + currentAppointment.getLoc() +
                     "',type = '" + currentAppointment.getType() + "',start = '" + currentAppointment.getStartDate() +
-                    "',end = '" + currentAppointment.getEndDate() + "',last_updated = '" + new Timestamp(System.currentTimeMillis()) +
+                    "',end = '" + currentAppointment.getEndDate() + "',last_update = '" + new Timestamp(System.currentTimeMillis()) +
                     "',last_updated_by = '" + currentUser.getUser_name() + "',customer_id = '" + currentAppointment.getCust_id() +
                     "',contact_id ='" + currentAppointment.getContact_id() + "',user_id = '" + currentAppointment.getUser_id() +
                     "' WHERE appointment_id = " + currentAppointment.getAppointment_id() + ";";

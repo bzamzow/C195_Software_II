@@ -310,7 +310,7 @@ public class DBQuery {
             appointment.setEndDate(appUtils.GMTTolocal(rs.getTimestamp("end")));
             appointment.setCreate_date(rs.getDate("create_date"));
             appointment.setCreated_by(rs.getString("created_by"));
-            appointment.setLast_update(rs.getTimestamp("last_updated"));
+            appointment.setLast_update(rs.getTimestamp("last_update"));
             appointment.setLast_updated_by(rs.getString("last_updated_by"));
             appointment.setCust_id(rs.getInt("customer_id"));
             appointment.setUser_id(rs.getInt("user_id"));

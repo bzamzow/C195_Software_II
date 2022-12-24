@@ -13,9 +13,9 @@ import java.sql.DriverManager;
 public class DBConnect {
 
     //private static final String DBURL = "jdbc:mysql://163.47.101.126:3306/scheduler";
-    private static final String DBURL = "jdbc:mysql://jmzsoft.com:3306/jmzsoft3_scheduler?enabledTLSProtocols=TLSv1.2";
-    private static final String username = "jmzsoft3_mazwoz";
-    private static final String pass = "TazMan00$$";
+    private static final String DBURL = "jdbc:mysql://127.0.0.1:3306/client_schedule?enabledTLSProtocols=TLSv1.2";
+    private static final String username = "sqlUser";
+    private static final String pass = "Passw0rd!";
 
     /**
      * Method to establish a connection to the database

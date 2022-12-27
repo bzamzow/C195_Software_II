@@ -29,7 +29,7 @@ import static ed.wgu.zamzow.software_ii.utils.Vars.futureAppointments;
  */
 public class ShowAppointmentsViewController {
 
-    public Button btnDel, btnMod;
+    public Button btnWDel, btnWMod, btnMDel, btnMMod;
     public TableView<Appointment> tblWeeklyAppointments, tblMonthlyAppointments;
     public TableColumn colTitle, colMTitle;
     public TableColumn colDesc, colMDesc;
@@ -103,7 +103,7 @@ public class ShowAppointmentsViewController {
      * Method to open the modify appointment view using the selected appointment
      */
     @FXML
-    private void ModifyAppointment() {
+    private void ModifyWAppointment() {
         Appointment appointment = tblWeeklyAppointments.getSelectionModel().getSelectedItem();
         URL fxmlLocation = getClass().getClassLoader().getResource("mod_appointment-view.fxml");
         FXMLLoader loader = new FXMLLoader(fxmlLocation);
@@ -126,10 +126,36 @@ public class ShowAppointmentsViewController {
     }
 
     /**
+     * Method to open the modify appointment view using the selected appointment
+     */
+    @FXML
+    private void ModifyMAppointment() {
+        Appointment appointment = tblMonthlyAppointments.getSelectionModel().getSelectedItem();
+        URL fxmlLocation = getClass().getClassLoader().getResource("mod_appointment-view.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmlLocation);
+        Parent mainRoot = null;
+        try {
+            mainRoot = loader.load();
+            ModAppointmentViewController controller = loader.getController();
+            controller.setAppointment(appointment, tblMonthlyAppointments.getSelectionModel().getSelectedIndex());
+
+            Stage stage = new Stage();
+
+            stage.setScene(new Scene(mainRoot));
+            stage.show();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    /**
      * Method to delete the selected appointment if confirmed
      */
     @FXML
-    private void DeleteAppointment() {
+    private void DeleteWAppointment() {
         Appointment appointment = tblWeeklyAppointments.getSelectionModel().getSelectedItem();
 
         Alert confirm = new Alert(Alert.AlertType.WARNING,"Are you sure you want to delete " + appointment.getTitle(), ButtonType.YES, ButtonType.NO);
@@ -139,7 +165,25 @@ public class ShowAppointmentsViewController {
         if (confirm.getResult() == ButtonType.YES) {
             DBWrite dbWrite = new DBWrite();
             dbWrite.DeleteAppointment(appointment);
-            futureAppointments.remove(appointment);
+            weeklyAppointments.remove(appointment);
+        }
+    }
+
+    /**
+     * Method to delete the selected appointment if confirmed
+     */
+    @FXML
+    private void DeleteMAppointment() {
+        Appointment appointment = tblMonthlyAppointments.getSelectionModel().getSelectedItem();
+
+        Alert confirm = new Alert(Alert.AlertType.WARNING,"Are you sure you want to delete " + appointment.getTitle(), ButtonType.YES, ButtonType.NO);
+        confirm.setTitle("Delete?");
+        confirm.showAndWait();
+
+        if (confirm.getResult() == ButtonType.YES) {
+            DBWrite dbWrite = new DBWrite();
+            dbWrite.DeleteAppointment(appointment);
+            monthlyAppointments.remove(appointment);
         }
     }
 }

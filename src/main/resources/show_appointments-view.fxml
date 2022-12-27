@@ -5,10 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="580.0" prefWidth="1038.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.wgu.zamzow.software_ii.controllers.ShowAppointmentsViewController">
-   <children>
-      <Button fx:id="btnDel" layoutX="973.0" layoutY="541.0" mnemonicParsing="false" onMouseClicked="#DeleteAppointment" text="Delete" textAlignment="CENTER" textFill="RED" />
-      <Button fx:id="btnMod" layoutX="899.0" layoutY="541.0" mnemonicParsing="false" onMouseClicked="#ModifyAppointment" text="Modify" textAlignment="CENTER" />
-      <Label layoutX="278.0" layoutY="47.0" text="Modify and Delete Appointments" textAlignment="CENTER">
+   <children><Label layoutX="278.0" layoutY="47.0" text="Modify and Delete Appointments" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -30,6 +27,9 @@
                            <TableColumn fx:id="colContact" prefWidth="79.0" text="Contact" />
                        </columns>
                    </TableView>
+              <Button fx:id="btnWDel" layoutX="973.0" layoutY="541.0" mnemonicParsing="false" onMouseClicked="#DeleteWAppointment" text="Delete" textAlignment="CENTER" textFill="RED" />
+              <Button fx:id="btnWMod" layoutX="899.0" layoutY="541.0" mnemonicParsing="false" onMouseClicked="#ModifyWAppointment" text="Modify" textAlignment="CENTER" />
+
           </Tab>
           <Tab text="Monthly">
               <TableView fx:id="tblMonthlyAppointments" prefHeight="323.0" prefWidth="779.0">
@@ -46,6 +46,9 @@
                       <TableColumn fx:id="colMContact" prefWidth="79.0" text="Contact" />
                   </columns>
               </TableView>
+              <Button fx:id="btnMDel" layoutX="973.0" layoutY="541.0" mnemonicParsing="false" onMouseClicked="#DeleteMAppointment" text="Delete" textAlignment="CENTER" textFill="RED" />
+              <Button fx:id="btnMMod" layoutX="899.0" layoutY="541.0" mnemonicParsing="false" onMouseClicked="#ModifyMAppointment" text="Modify" textAlignment="CENTER" />
+
           </Tab>
         </tabs>
       </TabPane>

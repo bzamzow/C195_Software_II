@@ -9,10 +9,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -100,6 +102,9 @@ public class MainController {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Appoint Starting");
                 alert.setContentText(n.getTitle() + " is starting in less than 15 minutes");
+                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                stage.setAlwaysOnTop(true);
+                stage.toFront();
                 alert.show();
             }
         });
@@ -107,7 +112,11 @@ public class MainController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("No Appointments");
             alert.setContentText("No appointments starting soon");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true);
+            stage.toFront();
             alert.show();
+
         }
     }
 

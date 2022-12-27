@@ -6,6 +6,7 @@ import ed.wgu.zamzow.software_ii.objects.Customer;
 import ed.wgu.zamzow.software_ii.utils.Vars;
 import ed.wgu.zamzow.software_ii.utils.appUtils;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+
+import static ed.wgu.zamzow.software_ii.utils.Vars.futureAppointments;
 
 
 /**
@@ -58,6 +61,9 @@ public class ShowCustomersViewController {
         colDivision.setCellValueFactory(new PropertyValueFactory("division_id"));
 
         tblCustomers.setItems(allCustomers);
+        allCustomers.addListener((ListChangeListener<Customer>) change -> {
+            tblCustomers.refresh();
+        });
     }
 
     /**
@@ -102,7 +108,13 @@ public class ShowCustomersViewController {
         if (confirm.getResult() == ButtonType.YES) {
             DBWrite dbWrite = new DBWrite();
             dbWrite.DeleteCustomerAppointments(customer.getCustomer_id());
+            futureAppointments.forEach((A) -> {
+                if (A.getCust_id() == customer.getCustomer_id()) {
+                    futureAppointments.remove(A);
+                }
+            });
             dbWrite.DeleteCustomer(customer);
+            allCustomers.remove(customer);
             Stage thisStage = (Stage) tblCustomers.getScene().getWindow();
             thisStage.close();
         }

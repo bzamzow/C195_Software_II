@@ -140,11 +140,18 @@ public class AddAppointmentViewController {
         customer = cbCust.getSelectionModel().getSelectedItem().toString();
 
         if (!hasError) {
+            Appointment localTime = new Appointment();
             Appointment appointment = new Appointment();
+            localTime.setTitle(title);
             appointment.setTitle(title);
+            localTime.setDesc(desc);
             appointment.setDesc(desc);
+            localTime.setLoc(loc);
             appointment.setLoc(loc);
+            localTime.setType(type);
             appointment.setType(type);
+            localTime.setStartDate(appUtils.convertDateTime(startDate, sH, sM));
+            localTime.setEndDate(appUtils.convertDateTime(endDate, eH, eM));
             appointment.setStartDate(appUtils.localToGMT(appUtils.convertDateTime(startDate, sH, sM)));
             appointment.setEndDate(appUtils.localToGMT(appUtils.convertDateTime(endDate, eH, eM)));
             appointment.setCust_id(dbQuery.getCustomer(customer).getCustomer_id());
@@ -157,18 +164,28 @@ public class AddAppointmentViewController {
             appointment.setUser_name(currentUser.getUser_name());
             appointment.setCust_name(customer);
             appointment.setCont_name(contact);
+            localTime.setCust_id(dbQuery.getCustomer(customer).getCustomer_id());
+            localTime.setContact_id(dbQuery.getContact(contact).getContact_id());
+            localTime.setUser_id(currentUser.getUser_id());
+            localTime.setCreated_by(currentUser.getUser_name());
+            localTime.setLast_updated_by(currentUser.getUser_name());
+            localTime.setCreate_date(new java.sql.Date(new Date(millis).getTime()));
+            localTime.setLast_update(new Timestamp(millis));
+            localTime.setUser_name(currentUser.getUser_name());
+            localTime.setCust_name(customer);
+            localTime.setCont_name(contact);
 
             ArrayList<Appointment> conflictingAppointments = dbQuery.getConflicts(appointment);
             for (Appointment conflict : conflictingAppointments) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText(conflict.getTitle());
+                alert.setContentText("This appointment conflicts with: " + conflict.getTitle() + " please select a new appointment time");
                 alert.show();
             }
             if (conflictingAppointments.size() == 0) {
                 DBWrite dbWrite = new DBWrite();
 
                 if (dbWrite.AddAppointment(appointment)) {
-                    futureAppointments.add(appointment);
+                    futureAppointments.add(localTime);
                     Stage stage = (Stage) cbSH.getScene().getWindow();
                     stage.close();
                 } else {

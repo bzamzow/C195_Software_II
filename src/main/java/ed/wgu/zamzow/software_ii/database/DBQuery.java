@@ -519,9 +519,6 @@ public class DBQuery {
                 "appointments.contact_id=contacts.contact_id WHERE appointments.start > NOW() AND ( ? BETWEEN appointments.start AND appointments.end) AND customers.customer_id = ?");
         ps.setTimestamp(1, checkingAppointment.getStartDate());
         ps.setInt(2, checkingAppointment.getCust_id());
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText(ps.toString());
-        alert.show();
         ResultSet rs = ps.executeQuery();
         ArrayList<Appointment> appointments = new ArrayList<>();
         while(rs.next()) {

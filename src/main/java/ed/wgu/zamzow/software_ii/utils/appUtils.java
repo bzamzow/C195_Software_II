@@ -95,8 +95,8 @@ public class appUtils {
             String[] splitDate = initDate.split("/");
 
             cal.set(Calendar.YEAR, parseInt(splitDate[2]));
-            cal.set(Calendar.MONTH, parseInt(splitDate[1]) - 1);
-            cal.set(Calendar.DAY_OF_MONTH, parseInt(splitDate[0]));
+            cal.set(Calendar.MONTH, parseInt(splitDate[0]) - 1);
+            cal.set(Calendar.DAY_OF_MONTH, parseInt(splitDate[1]));
             cal.set(Calendar.HOUR_OF_DAY, parseInt(hour));
             cal.set(Calendar.MINUTE, parseInt(minute));
             cal.set(Calendar.SECOND, 0);

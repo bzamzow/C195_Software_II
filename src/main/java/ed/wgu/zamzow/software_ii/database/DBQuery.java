@@ -444,7 +444,7 @@ public class DBQuery {
      */
     public ArrayList<Appointment> getWeeklyAppointments() throws SQLException {
         stmt = con.createStatement();
-        rs = stmt.executeQuery("SELECT * FROM appointments INNER JOIN users ON appointments.user_id=users.user_id INNER JOIN customers ON appointments.customer_id=customers.customer_id INNER JOIN contacts ON appointments.contact_id=contacts.contact_id WHERE MONTH(appointments.start) = MONTH(CURRENT_DATE()) AND YEAR(appointments.Start) = YEAR(CURRENT_DATE())");
+        rs = stmt.executeQuery("SELECT * FROM appointments INNER JOIN users ON appointments.user_id=users.user_id INNER JOIN customers ON appointments.customer_id=customers.customer_id INNER JOIN contacts ON appointments.contact_id=contacts.contact_id WHERE week(appointments.start) = week(CURRENT_DATE()) AND YEAR(appointments.Start) = YEAR(CURRENT_DATE())");
         ArrayList<Appointment> appointments = new ArrayList<>();
         while(rs.next()) {
             Appointment appointment = new Appointment();
@@ -516,9 +516,10 @@ public class DBQuery {
 
         PreparedStatement ps = con.prepareStatement("SELECT * FROM appointments INNER JOIN users ON appointments.user_id=users.user_id " +
                 "INNER JOIN customers ON appointments.customer_id=customers.customer_id INNER JOIN contacts ON " +
-                "appointments.contact_id=contacts.contact_id WHERE appointments.start > NOW() AND ( ? BETWEEN appointments.start AND appointments.end) AND customers.customer_id = ?");
+                "appointments.contact_id=contacts.contact_id WHERE ? BETWEEN appointments.start AND appointments.end OR ? BETWEEN appointments.start AND appointments.end AND customers.customer_id = ?");
         ps.setTimestamp(1, checkingAppointment.getStartDate());
-        ps.setInt(2, checkingAppointment.getCust_id());
+        ps.setTimestamp(2, checkingAppointment.getEndDate());
+        ps.setInt(3, checkingAppointment.getCust_id());
         ResultSet rs = ps.executeQuery();
         ArrayList<Appointment> appointments = new ArrayList<>();
         while(rs.next()) {

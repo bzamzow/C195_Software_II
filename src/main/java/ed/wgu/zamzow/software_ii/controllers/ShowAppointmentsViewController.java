@@ -41,6 +41,8 @@ public class ShowAppointmentsViewController {
     public TableColumn colUser, colMUser;
     public TableColumn colContact, colMContact;
     public TableColumn colID, colMID;
+    public TabPane tabPane;
+    public Tab tabWeekly, tabMonthly;
     private ObservableList<Appointment> monthlyAppointments;
     private ObservableList<Appointment> weeklyAppointments;
     private DBQuery dbQuery;
@@ -103,6 +105,28 @@ public class ShowAppointmentsViewController {
      * Method to open the modify appointment view using the selected appointment
      */
     @FXML
+    private void ModifyButton() {
+        Tab currentTab = tabPane.getSelectionModel().getSelectedItem();
+        if (currentTab == tabWeekly) {
+            ModifyWAppointment();
+        } else {
+            ModifyMAppointment();
+        }
+    }
+
+    @FXML
+    private void DeleteButton() {
+        Tab currentTab = tabPane.getSelectionModel().getSelectedItem();
+        if (currentTab == tabWeekly) {
+            DeleteWAppointment();
+        } else {
+            DeleteMAppointment();
+        }
+    }
+
+    /**
+     * Method to open the modify appointment view using the selected appointment
+     */
     private void ModifyWAppointment() {
         Appointment appointment = tblWeeklyAppointments.getSelectionModel().getSelectedItem();
         URL fxmlLocation = getClass().getClassLoader().getResource("mod_appointment-view.fxml");
@@ -128,7 +152,6 @@ public class ShowAppointmentsViewController {
     /**
      * Method to open the modify appointment view using the selected appointment
      */
-    @FXML
     private void ModifyMAppointment() {
         Appointment appointment = tblMonthlyAppointments.getSelectionModel().getSelectedItem();
         URL fxmlLocation = getClass().getClassLoader().getResource("mod_appointment-view.fxml");
@@ -154,7 +177,6 @@ public class ShowAppointmentsViewController {
     /**
      * Method to delete the selected appointment if confirmed
      */
-    @FXML
     private void DeleteWAppointment() {
         Appointment appointment = tblWeeklyAppointments.getSelectionModel().getSelectedItem();
 
@@ -166,13 +188,13 @@ public class ShowAppointmentsViewController {
             DBWrite dbWrite = new DBWrite();
             dbWrite.DeleteAppointment(appointment);
             weeklyAppointments.remove(appointment);
+            monthlyAppointments.remove(appointment);
         }
     }
 
     /**
      * Method to delete the selected appointment if confirmed
      */
-    @FXML
     private void DeleteMAppointment() {
         Appointment appointment = tblMonthlyAppointments.getSelectionModel().getSelectedItem();
 
@@ -184,6 +206,7 @@ public class ShowAppointmentsViewController {
             DBWrite dbWrite = new DBWrite();
             dbWrite.DeleteAppointment(appointment);
             monthlyAppointments.remove(appointment);
+            weeklyAppointments.remove(appointment);
         }
     }
 }

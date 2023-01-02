@@ -5,10 +5,8 @@ import javafx.scene.control.Alert;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
+import java.time.*;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Integer.parseInt;
@@ -172,13 +170,27 @@ public class appUtils {
      * @return
      */
     public static int hourOffset() {
-        Calendar est = Calendar.getInstance(TimeZone.getTimeZone("EST"));
 
+        ZoneOffset est = getESTOffset();
+        ZoneOffset local = getLocalOffset();
+
+        int estStart = Integer.parseInt(est.toString().split(":")[0]);
+        int localStart = Integer.parseInt(local.toString().split(":")[0]);
+
+        return localStart - estStart;
+    }
+
+    private static ZoneOffset getLocalOffset() {
         String timeZone = Calendar.getInstance().getTimeZone().getID();
-        Calendar local = Calendar.getInstance(TimeZone.getTimeZone(timeZone));
-        long diffInMillies = Math.abs(est.getTimeInMillis() - local.getTimeInMillis());
-        long diff = TimeUnit.HOURS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-        return (int)diff;
+        TimeZone curTimeZone = TimeZone.getTimeZone(timeZone);
+        ZoneOffset offset = ZonedDateTime.now(ZoneId.of(curTimeZone.getID(), ZoneId.SHORT_IDS)).getOffset();
+        return offset;
+    }
+
+    private static ZoneOffset getESTOffset() {
+        TimeZone etTimeZone = TimeZone.getTimeZone("America/New_York");
+        ZoneOffset offset = ZonedDateTime.now(ZoneId.of(etTimeZone.getID(), ZoneId.SHORT_IDS)).getOffset();
+        return offset;
     }
 
 

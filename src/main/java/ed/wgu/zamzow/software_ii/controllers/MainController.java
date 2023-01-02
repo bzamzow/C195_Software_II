@@ -101,7 +101,7 @@ public class MainController {
                 appointmentSoon.set(true);
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Appoint Starting");
-                alert.setContentText(n.getTitle() + " is starting in less than 15 minutes");
+                alert.setContentText(n.getTitle() + " is starting in less than 15 minutes\n\nAppointment ID: " + n.getAppointment_id() + ". Start date and time: " + n.getStartDate().toString());
                 Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
                 stage.setAlwaysOnTop(true);
                 stage.toFront();

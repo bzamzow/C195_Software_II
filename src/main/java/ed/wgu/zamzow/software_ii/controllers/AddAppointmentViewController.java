@@ -59,7 +59,9 @@ public class AddAppointmentViewController {
                 cbCust.getItems().add(customer.getCustomer_name());
             }
 
-            for (int i = (8 + appUtils.hourOffset()); i <= (22 + appUtils.hourOffset()); i++) {
+            int startTime = 8 + appUtils.hourOffset();
+            int endTime = 22 + appUtils.hourOffset();
+            for (int i = startTime; i <= endTime; i++) {
                 cbSH.getItems().add(String.valueOf(i));
                 cbEH.getItems().add(String.valueOf(i));
             }
